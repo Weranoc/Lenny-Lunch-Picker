@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LennyLunchPickerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="accessToken">
+    <Key>
+      <PropertyRef Name="tokenId" />
+    </Key>
+    <Property Name="tokenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="token" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="expires" Type="datetime" Nullable="false" />
+    <Property Name="created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="favoriteRestaurant">
+    <Key>
+      <PropertyRef Name="restaurantId" />
+    </Key>
+    <Property Name="restaurantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="restaurantName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="webAddress" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="googleMapsApi">
+    <Key>
+      <PropertyRef Name="mapApiId" />
+    </Key>
+    <Property Name="mapApiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mapKey" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="restaurantId" Type="int" />
+    <Property Name="userName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="fName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="lName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="joinDate" Type="datetime" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__users__restauran__412EB0B6">
+    <End Role="favoriteRestaurant" Type="Self.favoriteRestaurant" Multiplicity="0..1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="favoriteRestaurant">
+        <PropertyRef Name="restaurantId" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="restaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LennyLunchPickerModelStoreContainer">
+    <EntitySet Name="accessToken" EntityType="Self.accessToken" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="favoriteRestaurant" EntityType="Self.favoriteRestaurant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="googleMapsApi" EntityType="Self.googleMapsApi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__users__restauran__412EB0B6" Association="Self.FK__users__restauran__412EB0B6">
+      <End Role="favoriteRestaurant" EntitySet="favoriteRestaurant" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
