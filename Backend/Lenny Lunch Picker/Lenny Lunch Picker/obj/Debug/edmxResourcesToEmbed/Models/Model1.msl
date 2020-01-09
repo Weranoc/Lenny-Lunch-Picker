@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LennyLunchPickerModelStoreContainer" CdmEntityContainer="LennyLunchPickerEntities1">
+    <EntitySetMapping Name="accessTokens">
+      <EntityTypeMapping TypeName="LennyLunchPickerModel.accessToken">
+        <MappingFragment StoreEntitySet="accessToken">
+          <ScalarProperty Name="tokenId" ColumnName="tokenId" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="expires" ColumnName="expires" />
+          <ScalarProperty Name="created" ColumnName="created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="favoriteRestaurants">
+      <EntityTypeMapping TypeName="LennyLunchPickerModel.favoriteRestaurant">
+        <MappingFragment StoreEntitySet="favoriteRestaurant">
+          <ScalarProperty Name="restaurantId" ColumnName="restaurantId" />
+          <ScalarProperty Name="restaurantName" ColumnName="restaurantName" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="webAddress" ColumnName="webAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="googleMapsApis">
+      <EntityTypeMapping TypeName="LennyLunchPickerModel.googleMapsApi">
+        <MappingFragment StoreEntitySet="googleMapsApi">
+          <ScalarProperty Name="mapApiId" ColumnName="mapApiId" />
+          <ScalarProperty Name="mapKey" ColumnName="mapKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="LennyLunchPickerModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="restaurantId" ColumnName="restaurantId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="lName" ColumnName="lName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="joinDate" ColumnName="joinDate" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

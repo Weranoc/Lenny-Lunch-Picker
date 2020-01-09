@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LennyLunchPickerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accessToken">
+          <Key>
+            <PropertyRef Name="tokenId" />
+          </Key>
+          <Property Name="tokenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="token" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="expires" Type="datetime" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="favoriteRestaurant">
+          <Key>
+            <PropertyRef Name="restaurantId" />
+          </Key>
+          <Property Name="restaurantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="restaurantName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="webAddress" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="googleMapsApi">
+          <Key>
+            <PropertyRef Name="mapApiId" />
+          </Key>
+          <Property Name="mapApiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mapKey" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="restaurantId" Type="int" />
+          <Property Name="userName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="fName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="lName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="joinDate" Type="datetime" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__users__restauran__412EB0B6">
+          <End Role="favoriteRestaurant" Type="Self.favoriteRestaurant" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="favoriteRestaurant">
+              <PropertyRef Name="restaurantId" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="restaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LennyLunchPickerModelStoreContainer">
+          <EntitySet Name="accessToken" EntityType="Self.accessToken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="favoriteRestaurant" EntityType="Self.favoriteRestaurant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="googleMapsApi" EntityType="Self.googleMapsApi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__users__restauran__412EB0B6" Association="Self.FK__users__restauran__412EB0B6">
+            <End Role="favoriteRestaurant" EntitySet="favoriteRestaurant" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LennyLunchPickerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="accessToken">
+          <Key>
+            <PropertyRef Name="tokenId" />
+          </Key>
+          <Property Name="tokenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="token" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="expires" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="favoriteRestaurant">
+          <Key>
+            <PropertyRef Name="restaurantId" />
+          </Key>
+          <Property Name="restaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="restaurantName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="webAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__restauran__412EB0B6" FromRole="favoriteRestaurant" ToRole="users" />
+        </EntityType>
+        <EntityType Name="googleMapsApi">
+          <Key>
+            <PropertyRef Name="mapApiId" />
+          </Key>
+          <Property Name="mapApiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mapKey" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="restaurantId" Type="Int32" />
+          <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="joinDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="favoriteRestaurant" Relationship="Self.FK__users__restauran__412EB0B6" FromRole="users" ToRole="favoriteRestaurant" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        </EntityType>
+        <Association Name="FK__users__restauran__412EB0B6">
+          <End Role="favoriteRestaurant" Type="Self.favoriteRestaurant" Multiplicity="0..1" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="favoriteRestaurant">
+              <PropertyRef Name="restaurantId" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="restaurantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LennyLunchPickerEntities1" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="accessTokens" EntityType="Self.accessToken" />
+          <EntitySet Name="favoriteRestaurants" EntityType="Self.favoriteRestaurant" />
+          <EntitySet Name="googleMapsApis" EntityType="Self.googleMapsApi" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK__users__restauran__412EB0B6" Association="Self.FK__users__restauran__412EB0B6">
+            <End Role="favoriteRestaurant" EntitySet="favoriteRestaurants" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LennyLunchPickerModelStoreContainer" CdmEntityContainer="LennyLunchPickerEntities1">
+          <EntitySetMapping Name="accessTokens">
+            <EntityTypeMapping TypeName="LennyLunchPickerModel.accessToken">
+              <MappingFragment StoreEntitySet="accessToken">
+                <ScalarProperty Name="tokenId" ColumnName="tokenId" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="expires" ColumnName="expires" />
+                <ScalarProperty Name="created" ColumnName="created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="favoriteRestaurants">
+            <EntityTypeMapping TypeName="LennyLunchPickerModel.favoriteRestaurant">
+              <MappingFragment StoreEntitySet="favoriteRestaurant">
+                <ScalarProperty Name="restaurantId" ColumnName="restaurantId" />
+                <ScalarProperty Name="restaurantName" ColumnName="restaurantName" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="webAddress" ColumnName="webAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="googleMapsApis">
+            <EntityTypeMapping TypeName="LennyLunchPickerModel.googleMapsApi">
+              <MappingFragment StoreEntitySet="googleMapsApi">
+                <ScalarProperty Name="mapApiId" ColumnName="mapApiId" />
+                <ScalarProperty Name="mapKey" ColumnName="mapKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="LennyLunchPickerModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="restaurantId" ColumnName="restaurantId" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="lName" ColumnName="lName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="joinDate" ColumnName="joinDate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
