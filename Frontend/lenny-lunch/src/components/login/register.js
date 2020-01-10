@@ -16,8 +16,12 @@ export class Register extends React.Component {
                 </div>
             <div className="form">
                 <div className="form-group">
-                    <label htmlFor="username">För -och efternamn</label>
-                    <input type="text" name="username" placeholder="För -och efternamn" />
+                    <label htmlFor="username">Förnamn</label>
+                    <input type="text" name="username" placeholder="Förnamn" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="username">Efternamn</label>
+                    <input type="text" name="username" placeholder="Efternamn" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">E-post</label>
