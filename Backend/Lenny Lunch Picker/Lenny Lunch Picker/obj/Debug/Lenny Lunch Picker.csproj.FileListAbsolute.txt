@@ -84,3 +84,6 @@ C:\Users\plejd\Documents\OOP 2019\Lenny-Lunch-Picker\Backend\Lenny Lunch Picker\
 C:\Users\plejd\Documents\OOP 2019\Lenny-Lunch-Picker\Backend\Lenny Lunch Picker\Lenny Lunch Picker\obj\Debug\Lenny Lunch Picker.csproj.CopyComplete
 C:\Users\plejd\Documents\OOP 2019\Lenny-Lunch-Picker\Backend\Lenny Lunch Picker\Lenny Lunch Picker\obj\Debug\Lenny Lunch Picker.dll
 C:\Users\plejd\Documents\OOP 2019\Lenny-Lunch-Picker\Backend\Lenny Lunch Picker\Lenny Lunch Picker\obj\Debug\Lenny Lunch Picker.pdb
+C:\Users\plejd\Documents\OOP 2019\Lenny-Lunch-Picker\Backend\Lenny Lunch Picker\Lenny Lunch Picker\bin\System.Web.Cors.dll
+C:\Users\plejd\Documents\OOP 2019\Lenny-Lunch-Picker\Backend\Lenny Lunch Picker\Lenny Lunch Picker\bin\System.Web.Http.Cors.dll
+C:\Users\plejd\Documents\OOP 2019\Lenny-Lunch-Picker\Backend\Lenny Lunch Picker\Lenny Lunch Picker\bin\System.Web.Http.Cors.xml
