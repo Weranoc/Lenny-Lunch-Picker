@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LennyLunchPickerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="accessToken">
+    <Key>
+      <PropertyRef Name="tokenId" />
+    </Key>
+    <Property Name="tokenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="token" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="expires" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="favoriteRestaurant">
+    <Key>
+      <PropertyRef Name="restaurantId" />
+    </Key>
+    <Property Name="restaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="restaurantName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="webAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="Self.FK__users__restauran__412EB0B6" FromRole="favoriteRestaurant" ToRole="users" />
+  </EntityType>
+  <EntityType Name="googleMapsApi">
+    <Key>
+      <PropertyRef Name="mapApiId" />
+    </Key>
+    <Property Name="mapApiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mapKey" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="restaurantId" Type="Int32" />
+    <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="joinDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="favoriteRestaurant" Relationship="Self.FK__users__restauran__412EB0B6" FromRole="users" ToRole="favoriteRestaurant" />
+  </EntityType>
+  <Association Name="FK__users__restauran__412EB0B6">
+    <End Role="favoriteRestaurant" Type="Self.favoriteRestaurant" Multiplicity="0..1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="favoriteRestaurant">
+        <PropertyRef Name="restaurantId" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="restaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LennyLunchPickerEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="accessTokens" EntityType="Self.accessToken" />
+    <EntitySet Name="favoriteRestaurants" EntityType="Self.favoriteRestaurant" />
+    <EntitySet Name="googleMapsApis" EntityType="Self.googleMapsApi" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK__users__restauran__412EB0B6" Association="Self.FK__users__restauran__412EB0B6">
+      <End Role="favoriteRestaurant" EntitySet="favoriteRestaurants" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
