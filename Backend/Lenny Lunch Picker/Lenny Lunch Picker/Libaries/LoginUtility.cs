@@ -11,15 +11,15 @@ namespace Lenny_Lunch_Picker.Libraries
     {
         private LennyLunchPickerEntities1 db = new LennyLunchPickerEntities1();
 
-        public string Login(string user, string password)
+        public string Login(string email, string password)
         {
-            var Member = db.users.Where(u => u.userName == user).FirstOrDefault<user>();
+            var Member = db.users.Where(u => u.email == email).FirstOrDefault<user>();
 
             if (Member != null)
             {
                 if (Member.password == password)
                 {
-                    return CreateTokenString(user);
+                    return CreateTokenString(email);
                 } else
                 {
                     return string.Empty;
