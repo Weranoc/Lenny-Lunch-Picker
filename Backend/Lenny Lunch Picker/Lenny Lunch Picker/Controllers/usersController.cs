@@ -24,7 +24,7 @@ namespace Lenny_Lunch_Picker.Controllers
         [HttpPost]
         public AccessTokenViewModel Login(UserLoginModel userLogin)
         {
-            var tokenString = loginUtil.Login(userLogin.user, userLogin.password);
+            var tokenString = loginUtil.Login(userLogin.email, userLogin.password);
 
             if (tokenString != string.Empty)
             {
