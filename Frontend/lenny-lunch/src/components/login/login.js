@@ -24,7 +24,7 @@ export class Login extends React.Component {
       .then(Response => Response.json()) 
       .then(data => { 
         if(data == null){ 
-          alert('Wrong email or password')
+          alert('Fel E-post eller lösenord!')
         }else{ 
           this.props.loggedIn(data); 
           this.props.chosenPage("searchProfile");
