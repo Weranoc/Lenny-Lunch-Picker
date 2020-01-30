@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import { Login, Register } from "./components/login/index";
+import { Login, Register, LogoutNav } from "./components/login/index";
 
 class App extends React.Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class App extends React.Component {
         <div className="login">
           <div className="container" ref={ref => (this.container = ref)}>
             {isLogginActive && (
-              <Login containerRef={ref => (this.current = ref)} loggedIn={token => this.handleAccessToken(token)} />
+              <Login containerRef={ref => (this.current = ref)} loggedIn={token => this.handleAccessToken(token)} chosenPage={page => this.pageHandler(page)}/>
             )}
             {!isLogginActive && (
               <Register containerRef={ref => (this.current = ref)} />
@@ -69,7 +69,7 @@ class App extends React.Component {
         )}
 
         {this.state.chosenPage==="searchProfile" ? (
-          <search/>
+          <LogoutNav/>
         ):(
         <div/>
         )}
