@@ -41,7 +41,7 @@
     <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="joinDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="favoriteRestaurant" Relationship="Self.FK__users__restauran__412EB0B6" FromRole="users" ToRole="favoriteRestaurant" />
+    <NavigationProperty Name="favoriteRestaurant" Relationship="Self.FK__users__restauran__412EB0B6" FromRole="users" ToRole="favoriteRestaurant" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
   </EntityType>
   <Association Name="FK__users__restauran__412EB0B6">
     <End Role="favoriteRestaurant" Type="Self.favoriteRestaurant" Multiplicity="0..1" />
@@ -55,7 +55,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="LennyLunchPickerEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="LennyLunchPickerEntities1" annotation:LazyLoadingEnabled="false">
     <EntitySet Name="accessTokens" EntityType="Self.accessToken" />
     <EntitySet Name="favoriteRestaurants" EntityType="Self.favoriteRestaurant" />
     <EntitySet Name="googleMapsApis" EntityType="Self.googleMapsApi" />

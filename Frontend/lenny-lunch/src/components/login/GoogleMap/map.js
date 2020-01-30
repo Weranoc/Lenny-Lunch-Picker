@@ -31,3 +31,5 @@ import {
       )
     }
   }
+
+export default Map;
